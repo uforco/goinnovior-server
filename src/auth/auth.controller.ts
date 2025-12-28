@@ -38,6 +38,7 @@ export class AuthController {
   @Get('test-cookie')
   getCookie(@Req() req: any) {
     console.log(req.cookies);
-    return req.cookies?.access_token;
+    if (!req.cookies && !req.cookies.access_token) return 'No cookie found';
+    return { access_token_to_backend: req.cookies.access_token };
   }
 }
