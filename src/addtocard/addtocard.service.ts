@@ -30,14 +30,13 @@ export class AddtocardService {
   async updateCart(data: UpdateAndCreateAddtocardDto) {
     const { userId, productId, quantity } = data;
     // Try to find existing cart item
-    const existingItem = await this.prisma.addtoCart.findUnique({
+    const existingItem = await this.prisma.addtoCart.findFirst({
       where: {
-        userId_productId: {
-          userId,
-          productId,
-        },
+        AND: [{ userId }, { productId }],
       },
     });
+
+    console.log('existingItem', existingItem);
 
     const select = {
       id: true,
@@ -80,6 +79,17 @@ export class AddtocardService {
       },
       data: {
         quantity: newQuantity,
+      },
+    });
+  }
+
+  async getAllQunt(userId: string) {
+    return await this.prisma.addtoCart.aggregate({
+      where: {
+        userId,
+      },
+      _sum: {
+        quantity: true,
       },
     });
   }

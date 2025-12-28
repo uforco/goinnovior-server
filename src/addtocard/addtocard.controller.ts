@@ -10,27 +10,27 @@ export class AddtocardController {
   @Post('increment')
   incrementCart(
     @Body() createAddtocardDto: CreateAddtocardDto,
-    @User('sub') userId: string,
+    @User('sub') user: any,
   ) {
     return this.addtocardService.incrementCart({
       ...createAddtocardDto,
-      userId,
+      userId: user.sub,
     });
   }
 
   @Post('decrement')
   decrementCart(
     @Body() createAddtocardDto: CreateAddtocardDto,
-    @User('sub') userId: string,
+    @User() user: any,
   ) {
     return this.addtocardService.decrementCart({
       ...createAddtocardDto,
-      userId,
+      userId: user.sub,
     });
   }
 
   @Get()
-  findAll() {
-    // return this.addtocardService.findAll();
+  async findAll(@User() user: any) {
+    await this.addtocardService.getAllQunt(user.sub as string);
   }
 }

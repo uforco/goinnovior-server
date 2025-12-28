@@ -35,6 +35,19 @@ export class AuthController {
     res.redirect(`${process.env.FORTEND_URL}?access_token=${result.token}`);
   }
 
+  @Get('logout')
+  logout(@Res() res: Response) {
+    res.clearCookie('access_token', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+    });
+
+    return res.status(200).json({
+      message: 'Logged out successfully',
+    });
+  }
+
   // @Public()
   @Get('me')
   async getCookie(@Req() req: any, @User() user: any) {
