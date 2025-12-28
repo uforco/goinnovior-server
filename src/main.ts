@@ -11,6 +11,8 @@ async function bootstrap(): Promise<void> {
   });
   SwaggerSetting(app);
 
+  console.log(process.env.NODE_ENV);
+
   // app.enableCors({
   //   origin: '*',
   //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
