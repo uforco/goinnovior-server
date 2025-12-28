@@ -34,6 +34,6 @@ RUN pnpm build
 EXPOSE 3000
 
 # Default command
-CMD ["pnpm", "run", "start:dev"]
+CMD ["pnpm", "run", "start:prod"]
 
 
