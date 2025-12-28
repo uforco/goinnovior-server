@@ -35,10 +35,11 @@ export class AuthController {
   }
 
   // @Public()
-  @Get('test-cookie')
-  getCookie(@Req() req: any) {
+  @Get('me')
+  async getCookie(@Req() req: any, @User() user: any) {
+    console.log('-------user-----', user);
     console.log(req.cookies);
     if (!req.cookies && !req.cookies.access_token) return 'No cookie found';
-    return { access_token_to_backend: req.cookies.access_token };
+    return await this.authService.getUser(user.sub as string);
   }
 }

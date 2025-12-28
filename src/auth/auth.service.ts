@@ -74,4 +74,16 @@ export class AuthService {
     });
     return `Bearer ${token}`;
   }
+
+  async getUser(id: string) {
+    return await this.prisma.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        email: true,
+        provider: true,
+        image: true,
+      },
+    });
+  }
 }
