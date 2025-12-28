@@ -13,10 +13,7 @@ services:
     ports:
       - '${DB_PORT}:5432'
   
-  server:
-    build:
-      cantex: .
-      dockerfile: Dockerfile
+  backend:
     image: sharif780/backendgoinnovior:latest
     container_name: goinnovior_server
     restart: always
