@@ -1,5 +1,5 @@
 # Use Node 20 Alpine
-FROM node:20-alpine
+FROM node:22-alpine
 
 # Set working directory
 # WORKDIR /usr/src/app
@@ -11,12 +11,13 @@ RUN npm install -g pnpm
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN pnpm install
-
 # Copy Prisma folder first
 COPY prisma ./prisma/
 COPY prisma.config.ts ./
+
+# Install dependencies
+RUN pnpm install
+
 
 # Copy rest of the source code
 COPY . .
