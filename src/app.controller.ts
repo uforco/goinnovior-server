@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { Public } from './auth/decorators/public.decorator';
 // import { Public } from './auth/decorators/public.decorator';
 // import { CreateImapApiDto } from './imap-apis/dto/create-imap-api.dto';
 
@@ -9,6 +10,7 @@ export class AppController {
     private readonly appService: AppService,
   ) {}
 
+  @Public()
   @Get()
   getHello(): string {
     return this.appService.getHello();

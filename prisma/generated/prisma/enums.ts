@@ -9,36 +9,10 @@
 * 🟢 You can import this file directly.
 */
 
-export const PaymentStatus = {
-  PAID: 'PAID',
-  PENDING: 'PENDING',
-  FAILED: 'FAILED'
+export const AuthProvider = {
+  LOCAL: 'LOCAL',
+  GOOGLE: 'GOOGLE',
+  GITHUB: 'GITHUB'
 } as const
 
-export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
-
-
-export const TwoFAPurpose = {
-  LOGIN: 'LOGIN',
-  ENABLE_2FA: 'ENABLE_2FA',
-  DISABLE_2FA: 'DISABLE_2FA'
-} as const
-
-export type TwoFAPurpose = (typeof TwoFAPurpose)[keyof typeof TwoFAPurpose]
-
-
-export const BillingPeriod = {
-  MONTHLY: 'MONTHLY',
-  YEARLY: 'YEARLY'
-} as const
-
-export type BillingPeriod = (typeof BillingPeriod)[keyof typeof BillingPeriod]
-
-
-export const UserRole = {
-  ADMIN: 'ADMIN',
-  USER: 'USER',
-  ACCOUNTANT: 'ACCOUNTANT'
-} as const
-
-export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+export type AuthProvider = (typeof AuthProvider)[keyof typeof AuthProvider]

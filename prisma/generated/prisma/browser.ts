@@ -18,102 +18,12 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
- * Model Mileage
- * 
- */
-export type Mileage = Prisma.MileageModel
-/**
- * Model imapConfiguration
- * 
- */
-export type imapConfiguration = Prisma.imapConfigurationModel
-/**
- * Model userSubscriptionPlan
- * 
- */
-export type userSubscriptionPlan = Prisma.userSubscriptionPlanModel
-/**
- * Model userSubscriptionPlanHistory
- * 
- */
-export type userSubscriptionPlanHistory = Prisma.userSubscriptionPlanHistoryModel
-/**
- * Model subscriptionPlanPaymentStatus
- * 
- */
-export type subscriptionPlanPaymentStatus = Prisma.subscriptionPlanPaymentStatusModel
-/**
- * Model Profile
- * 
- */
-export type Profile = Prisma.ProfileModel
-/**
- * Model ForgetPass
- * 
- */
-export type ForgetPass = Prisma.ForgetPassModel
-/**
- * Model TwoFA
- * 
- */
-export type TwoFA = Prisma.TwoFAModel
-/**
- * Model Language
- * 
- */
-export type Language = Prisma.LanguageModel
-/**
- * Model Receipt
- * 
- */
-export type Receipt = Prisma.ReceiptModel
-/**
- * Model ReceiptCategory
- * 
- */
-export type ReceiptCategory = Prisma.ReceiptCategoryModel
-/**
- * Model BusinessInfo
- * 
- */
-export type BusinessInfo = Prisma.BusinessInfoModel
-/**
- * Model PaymentMethod
- * 
- */
-export type PaymentMethod = Prisma.PaymentMethodModel
-/**
- * Model InvoiceLayout
- * 
- */
-export type InvoiceLayout = Prisma.InvoiceLayoutModel
-/**
- * Model NotificationSetting
- * 
- */
-export type NotificationSetting = Prisma.NotificationSettingModel
-/**
- * Model SubscriptionPlan
- * 
- */
-export type SubscriptionPlan = Prisma.SubscriptionPlanModel
-/**
- * Model PackagePricing
- * 
- */
-export type PackagePricing = Prisma.PackagePricingModel
-/**
- * Model invoiceAutoSyncInterval
- * 
- */
-export type invoiceAutoSyncInterval = Prisma.invoiceAutoSyncIntervalModel
-/**
  * Model User
  * 
  */
 export type User = Prisma.UserModel
 /**
- * Model Email
+ * Model AddtoCart
  * 
  */
-export type Email = Prisma.EmailModel
+export type AddtoCart = Prisma.AddtoCartModel

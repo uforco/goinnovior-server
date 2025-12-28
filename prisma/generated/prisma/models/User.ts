@@ -26,64 +26,58 @@ export type AggregateUser = {
 
 export type UserMinAggregateOutputType = {
   id: string | null
+  email: string | null
   password: string | null
-  role: $Enums.UserRole | null
-  twoFactorEnabled: boolean | null
-  status: boolean | null
-  created_at: Date | null
-  updated_at: Date | null
+  provider: $Enums.AuthProvider | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: string | null
+  email: string | null
   password: string | null
-  role: $Enums.UserRole | null
-  twoFactorEnabled: boolean | null
-  status: boolean | null
-  created_at: Date | null
-  updated_at: Date | null
+  provider: $Enums.AuthProvider | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type UserCountAggregateOutputType = {
   id: number
+  email: number
   password: number
-  role: number
-  twoFactorEnabled: number
-  status: number
-  created_at: number
-  updated_at: number
+  provider: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
 
 export type UserMinAggregateInputType = {
   id?: true
+  email?: true
   password?: true
-  role?: true
-  twoFactorEnabled?: true
-  status?: true
-  created_at?: true
-  updated_at?: true
+  provider?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type UserMaxAggregateInputType = {
   id?: true
+  email?: true
   password?: true
-  role?: true
-  twoFactorEnabled?: true
-  status?: true
-  created_at?: true
-  updated_at?: true
+  provider?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type UserCountAggregateInputType = {
   id?: true
+  email?: true
   password?: true
-  role?: true
-  twoFactorEnabled?: true
-  status?: true
-  created_at?: true
-  updated_at?: true
+  provider?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -161,12 +155,11 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type UserGroupByOutputType = {
   id: string
-  password: string
-  role: $Enums.UserRole
-  twoFactorEnabled: boolean
-  status: boolean
-  created_at: Date
-  updated_at: Date
+  email: string
+  password: string | null
+  provider: $Enums.AuthProvider
+  createdAt: Date
+  updatedAt: Date
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -192,78 +185,41 @@ export type UserWhereInput = {
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.StringFilter<"User"> | string
-  password?: Prisma.StringFilter<"User"> | string
-  role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
-  status?: Prisma.BoolFilter<"User"> | boolean
-  created_at?: Prisma.DateTimeFilter<"User"> | Date | string
-  updated_at?: Prisma.DateTimeFilter<"User"> | Date | string
-  receipts?: Prisma.ReceiptListRelationFilter
-  businessInfo?: Prisma.XOR<Prisma.BusinessInfoNullableScalarRelationFilter, Prisma.BusinessInfoWhereInput> | null
-  email?: Prisma.XOR<Prisma.EmailNullableScalarRelationFilter, Prisma.EmailWhereInput> | null
-  imapConfigurations?: Prisma.XOR<Prisma.ImapConfigurationNullableScalarRelationFilter, Prisma.imapConfigurationWhereInput> | null
-  invoiceLayout?: Prisma.XOR<Prisma.InvoiceLayoutNullableScalarRelationFilter, Prisma.InvoiceLayoutWhereInput> | null
-  languages?: Prisma.LanguageListRelationFilter
-  mileages?: Prisma.MileageListRelationFilter
-  paymentMethods?: Prisma.PaymentMethodListRelationFilter
-  profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
-  userSubscriptionPlan?: Prisma.XOR<Prisma.UserSubscriptionPlanNullableScalarRelationFilter, Prisma.userSubscriptionPlanWhereInput> | null
-  userSubscriptionPlanHistory?: Prisma.UserSubscriptionPlanHistoryListRelationFilter
+  email?: Prisma.StringFilter<"User"> | string
+  password?: Prisma.StringNullableFilter<"User"> | string | null
+  provider?: Prisma.EnumAuthProviderFilter<"User"> | $Enums.AuthProvider
+  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  password?: Prisma.SortOrder
-  role?: Prisma.SortOrder
-  twoFactorEnabled?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
-  receipts?: Prisma.ReceiptOrderByRelationAggregateInput
-  businessInfo?: Prisma.BusinessInfoOrderByWithRelationInput
-  email?: Prisma.EmailOrderByWithRelationInput
-  imapConfigurations?: Prisma.imapConfigurationOrderByWithRelationInput
-  invoiceLayout?: Prisma.InvoiceLayoutOrderByWithRelationInput
-  languages?: Prisma.LanguageOrderByRelationAggregateInput
-  mileages?: Prisma.MileageOrderByRelationAggregateInput
-  paymentMethods?: Prisma.PaymentMethodOrderByRelationAggregateInput
-  profile?: Prisma.ProfileOrderByWithRelationInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanOrderByWithRelationInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryOrderByRelationAggregateInput
+  email?: Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
+  provider?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  email?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  password?: Prisma.StringFilter<"User"> | string
-  role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
-  status?: Prisma.BoolFilter<"User"> | boolean
-  created_at?: Prisma.DateTimeFilter<"User"> | Date | string
-  updated_at?: Prisma.DateTimeFilter<"User"> | Date | string
-  receipts?: Prisma.ReceiptListRelationFilter
-  businessInfo?: Prisma.XOR<Prisma.BusinessInfoNullableScalarRelationFilter, Prisma.BusinessInfoWhereInput> | null
-  email?: Prisma.XOR<Prisma.EmailNullableScalarRelationFilter, Prisma.EmailWhereInput> | null
-  imapConfigurations?: Prisma.XOR<Prisma.ImapConfigurationNullableScalarRelationFilter, Prisma.imapConfigurationWhereInput> | null
-  invoiceLayout?: Prisma.XOR<Prisma.InvoiceLayoutNullableScalarRelationFilter, Prisma.InvoiceLayoutWhereInput> | null
-  languages?: Prisma.LanguageListRelationFilter
-  mileages?: Prisma.MileageListRelationFilter
-  paymentMethods?: Prisma.PaymentMethodListRelationFilter
-  profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
-  userSubscriptionPlan?: Prisma.XOR<Prisma.UserSubscriptionPlanNullableScalarRelationFilter, Prisma.userSubscriptionPlanWhereInput> | null
-  userSubscriptionPlanHistory?: Prisma.UserSubscriptionPlanHistoryListRelationFilter
-}, "id" | "id">
+  password?: Prisma.StringNullableFilter<"User"> | string | null
+  provider?: Prisma.EnumAuthProviderFilter<"User"> | $Enums.AuthProvider
+  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+}, "id" | "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  password?: Prisma.SortOrder
-  role?: Prisma.SortOrder
-  twoFactorEnabled?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
+  provider?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -274,1544 +230,169 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
-  password?: Prisma.StringWithAggregatesFilter<"User"> | string
-  role?: Prisma.EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  status?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  created_at?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-  updated_at?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  email?: Prisma.StringWithAggregatesFilter<"User"> | string
+  password?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  provider?: Prisma.EnumAuthProviderWithAggregatesFilter<"User"> | $Enums.AuthProvider
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
 
 export type UserCreateInput = {
   id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryCreateNestedManyWithoutUserInput
+  email: string
+  password?: string | null
+  provider?: $Enums.AuthProvider
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserUncheckedCreateInput = {
   id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoUncheckedCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailUncheckedCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageUncheckedCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageUncheckedCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedCreateNestedManyWithoutUserInput
+  email: string
+  password?: string | null
+  provider?: $Enums.AuthProvider
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUpdateManyWithoutUserNestedInput
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUncheckedUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUncheckedUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUncheckedUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUncheckedUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedUpdateManyWithoutUserNestedInput
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserCreateManyInput = {
   id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
+  email: string
+  password?: string | null
+  provider?: $Enums.AuthProvider
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type UserScalarRelationFilter = {
-  is?: Prisma.UserWhereInput
-  isNot?: Prisma.UserWhereInput
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  role?: Prisma.SortOrder
-  twoFactorEnabled?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
+  provider?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  role?: Prisma.SortOrder
-  twoFactorEnabled?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
+  provider?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  role?: Prisma.SortOrder
-  twoFactorEnabled?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
+  provider?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
-export type UserNullableScalarRelationFilter = {
-  is?: Prisma.UserWhereInput | null
-  isNot?: Prisma.UserWhereInput | null
+export type StringFieldUpdateOperationsInput = {
+  set?: string
 }
 
-export type UserCreateNestedOneWithoutMileagesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutMileagesInput, Prisma.UserUncheckedCreateWithoutMileagesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMileagesInput
-  connect?: Prisma.UserWhereUniqueInput
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
-export type UserUpdateOneRequiredWithoutMileagesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutMileagesInput, Prisma.UserUncheckedCreateWithoutMileagesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMileagesInput
-  upsert?: Prisma.UserUpsertWithoutMileagesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMileagesInput, Prisma.UserUpdateWithoutMileagesInput>, Prisma.UserUncheckedUpdateWithoutMileagesInput>
+export type EnumAuthProviderFieldUpdateOperationsInput = {
+  set?: $Enums.AuthProvider
 }
 
-export type UserCreateNestedOneWithoutImapConfigurationsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutImapConfigurationsInput, Prisma.UserUncheckedCreateWithoutImapConfigurationsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutImapConfigurationsInput
-  connect?: Prisma.UserWhereUniqueInput
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
 }
 
-export type UserUpdateOneRequiredWithoutImapConfigurationsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutImapConfigurationsInput, Prisma.UserUncheckedCreateWithoutImapConfigurationsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutImapConfigurationsInput
-  upsert?: Prisma.UserUpsertWithoutImapConfigurationsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutImapConfigurationsInput, Prisma.UserUpdateWithoutImapConfigurationsInput>, Prisma.UserUncheckedUpdateWithoutImapConfigurationsInput>
-}
-
-export type UserCreateNestedOneWithoutUserSubscriptionPlanInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutUserSubscriptionPlanInput, Prisma.UserUncheckedCreateWithoutUserSubscriptionPlanInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUserSubscriptionPlanInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutUserSubscriptionPlanNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutUserSubscriptionPlanInput, Prisma.UserUncheckedCreateWithoutUserSubscriptionPlanInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUserSubscriptionPlanInput
-  upsert?: Prisma.UserUpsertWithoutUserSubscriptionPlanInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUserSubscriptionPlanInput, Prisma.UserUpdateWithoutUserSubscriptionPlanInput>, Prisma.UserUncheckedUpdateWithoutUserSubscriptionPlanInput>
-}
-
-export type UserCreateNestedOneWithoutUserSubscriptionPlanHistoryInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutUserSubscriptionPlanHistoryInput, Prisma.UserUncheckedCreateWithoutUserSubscriptionPlanHistoryInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUserSubscriptionPlanHistoryInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutUserSubscriptionPlanHistoryNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutUserSubscriptionPlanHistoryInput, Prisma.UserUncheckedCreateWithoutUserSubscriptionPlanHistoryInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUserSubscriptionPlanHistoryInput
-  upsert?: Prisma.UserUpsertWithoutUserSubscriptionPlanHistoryInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUserSubscriptionPlanHistoryInput, Prisma.UserUpdateWithoutUserSubscriptionPlanHistoryInput>, Prisma.UserUncheckedUpdateWithoutUserSubscriptionPlanHistoryInput>
-}
-
-export type UserCreateNestedOneWithoutProfileInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput
-  upsert?: Prisma.UserUpsertWithoutProfileInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProfileInput, Prisma.UserUpdateWithoutProfileInput>, Prisma.UserUncheckedUpdateWithoutProfileInput>
-}
-
-export type UserCreateNestedOneWithoutLanguagesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLanguagesInput, Prisma.UserUncheckedCreateWithoutLanguagesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLanguagesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutLanguagesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLanguagesInput, Prisma.UserUncheckedCreateWithoutLanguagesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLanguagesInput
-  upsert?: Prisma.UserUpsertWithoutLanguagesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLanguagesInput, Prisma.UserUpdateWithoutLanguagesInput>, Prisma.UserUncheckedUpdateWithoutLanguagesInput>
-}
-
-export type UserCreateNestedOneWithoutReceiptsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutReceiptsInput, Prisma.UserUncheckedCreateWithoutReceiptsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceiptsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutReceiptsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutReceiptsInput, Prisma.UserUncheckedCreateWithoutReceiptsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceiptsInput
-  upsert?: Prisma.UserUpsertWithoutReceiptsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReceiptsInput, Prisma.UserUpdateWithoutReceiptsInput>, Prisma.UserUncheckedUpdateWithoutReceiptsInput>
-}
-
-export type UserCreateNestedOneWithoutBusinessInfoInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutBusinessInfoInput, Prisma.UserUncheckedCreateWithoutBusinessInfoInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBusinessInfoInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutBusinessInfoNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutBusinessInfoInput, Prisma.UserUncheckedCreateWithoutBusinessInfoInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBusinessInfoInput
-  upsert?: Prisma.UserUpsertWithoutBusinessInfoInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBusinessInfoInput, Prisma.UserUpdateWithoutBusinessInfoInput>, Prisma.UserUncheckedUpdateWithoutBusinessInfoInput>
-}
-
-export type UserCreateNestedOneWithoutPaymentMethodsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentMethodsInput, Prisma.UserUncheckedCreateWithoutPaymentMethodsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentMethodsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutPaymentMethodsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentMethodsInput, Prisma.UserUncheckedCreateWithoutPaymentMethodsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentMethodsInput
-  upsert?: Prisma.UserUpsertWithoutPaymentMethodsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPaymentMethodsInput, Prisma.UserUpdateWithoutPaymentMethodsInput>, Prisma.UserUncheckedUpdateWithoutPaymentMethodsInput>
-}
-
-export type UserCreateNestedOneWithoutInvoiceLayoutInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutInvoiceLayoutInput, Prisma.UserUncheckedCreateWithoutInvoiceLayoutInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInvoiceLayoutInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutInvoiceLayoutNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutInvoiceLayoutInput, Prisma.UserUncheckedCreateWithoutInvoiceLayoutInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInvoiceLayoutInput
-  upsert?: Prisma.UserUpsertWithoutInvoiceLayoutInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutInvoiceLayoutInput, Prisma.UserUpdateWithoutInvoiceLayoutInput>, Prisma.UserUncheckedUpdateWithoutInvoiceLayoutInput>
-}
-
-export type EnumUserRoleFieldUpdateOperationsInput = {
-  set?: $Enums.UserRole
-}
-
-export type UserCreateNestedOneWithoutEmailInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutEmailInput, Prisma.UserUncheckedCreateWithoutEmailInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEmailInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneWithoutEmailNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutEmailInput, Prisma.UserUncheckedCreateWithoutEmailInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEmailInput
-  upsert?: Prisma.UserUpsertWithoutEmailInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEmailInput, Prisma.UserUpdateWithoutEmailInput>, Prisma.UserUncheckedUpdateWithoutEmailInput>
-}
-
-export type UserCreateWithoutMileagesInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutMileagesInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoUncheckedCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailUncheckedCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageUncheckedCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutMileagesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutMileagesInput, Prisma.UserUncheckedCreateWithoutMileagesInput>
-}
-
-export type UserUpsertWithoutMileagesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutMileagesInput, Prisma.UserUncheckedUpdateWithoutMileagesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutMileagesInput, Prisma.UserUncheckedCreateWithoutMileagesInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutMileagesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutMileagesInput, Prisma.UserUncheckedUpdateWithoutMileagesInput>
-}
-
-export type UserUpdateWithoutMileagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutMileagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUncheckedUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUncheckedUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUncheckedUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutImapConfigurationsInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutImapConfigurationsInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoUncheckedCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailUncheckedCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageUncheckedCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageUncheckedCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutImapConfigurationsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutImapConfigurationsInput, Prisma.UserUncheckedCreateWithoutImapConfigurationsInput>
-}
-
-export type UserUpsertWithoutImapConfigurationsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutImapConfigurationsInput, Prisma.UserUncheckedUpdateWithoutImapConfigurationsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutImapConfigurationsInput, Prisma.UserUncheckedCreateWithoutImapConfigurationsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutImapConfigurationsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutImapConfigurationsInput, Prisma.UserUncheckedUpdateWithoutImapConfigurationsInput>
-}
-
-export type UserUpdateWithoutImapConfigurationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutImapConfigurationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUncheckedUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUncheckedUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUncheckedUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUncheckedUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutUserSubscriptionPlanInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutUserSubscriptionPlanInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoUncheckedCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailUncheckedCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageUncheckedCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageUncheckedCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutUserSubscriptionPlanInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutUserSubscriptionPlanInput, Prisma.UserUncheckedCreateWithoutUserSubscriptionPlanInput>
-}
-
-export type UserUpsertWithoutUserSubscriptionPlanInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutUserSubscriptionPlanInput, Prisma.UserUncheckedUpdateWithoutUserSubscriptionPlanInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutUserSubscriptionPlanInput, Prisma.UserUncheckedCreateWithoutUserSubscriptionPlanInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutUserSubscriptionPlanInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutUserSubscriptionPlanInput, Prisma.UserUncheckedUpdateWithoutUserSubscriptionPlanInput>
-}
-
-export type UserUpdateWithoutUserSubscriptionPlanInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutUserSubscriptionPlanInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUncheckedUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUncheckedUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUncheckedUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUncheckedUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutUserSubscriptionPlanHistoryInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanCreateNestedOneWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutUserSubscriptionPlanHistoryInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoUncheckedCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailUncheckedCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageUncheckedCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageUncheckedCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedCreateNestedOneWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutUserSubscriptionPlanHistoryInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutUserSubscriptionPlanHistoryInput, Prisma.UserUncheckedCreateWithoutUserSubscriptionPlanHistoryInput>
-}
-
-export type UserUpsertWithoutUserSubscriptionPlanHistoryInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutUserSubscriptionPlanHistoryInput, Prisma.UserUncheckedUpdateWithoutUserSubscriptionPlanHistoryInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutUserSubscriptionPlanHistoryInput, Prisma.UserUncheckedCreateWithoutUserSubscriptionPlanHistoryInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutUserSubscriptionPlanHistoryInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutUserSubscriptionPlanHistoryInput, Prisma.UserUncheckedUpdateWithoutUserSubscriptionPlanHistoryInput>
-}
-
-export type UserUpdateWithoutUserSubscriptionPlanHistoryInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUpdateOneWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutUserSubscriptionPlanHistoryInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUncheckedUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUncheckedUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUncheckedUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUncheckedUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedUpdateOneWithoutUserNestedInput
-}
-
-export type UserCreateWithoutProfileInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutProfileInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoUncheckedCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailUncheckedCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageUncheckedCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageUncheckedCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutProfileInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
-}
-
-export type UserUpsertWithoutProfileInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutProfileInput, Prisma.UserUncheckedUpdateWithoutProfileInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutProfileInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutProfileInput, Prisma.UserUncheckedUpdateWithoutProfileInput>
-}
-
-export type UserUpdateWithoutProfileInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutProfileInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUncheckedUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUncheckedUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUncheckedUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUncheckedUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutLanguagesInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutCreateNestedOneWithoutUserInput
-  mileages?: Prisma.MileageCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutLanguagesInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoUncheckedCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailUncheckedCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedCreateNestedOneWithoutUserInput
-  mileages?: Prisma.MileageUncheckedCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutLanguagesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutLanguagesInput, Prisma.UserUncheckedCreateWithoutLanguagesInput>
-}
-
-export type UserUpsertWithoutLanguagesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutLanguagesInput, Prisma.UserUncheckedUpdateWithoutLanguagesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutLanguagesInput, Prisma.UserUncheckedCreateWithoutLanguagesInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutLanguagesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutLanguagesInput, Prisma.UserUncheckedUpdateWithoutLanguagesInput>
-}
-
-export type UserUpdateWithoutLanguagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUpdateOneWithoutUserNestedInput
-  mileages?: Prisma.MileageUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutLanguagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUncheckedUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUncheckedUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedUpdateOneWithoutUserNestedInput
-  mileages?: Prisma.MileageUncheckedUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutReceiptsInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  businessInfo?: Prisma.BusinessInfoCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutReceiptsInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  businessInfo?: Prisma.BusinessInfoUncheckedCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailUncheckedCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageUncheckedCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageUncheckedCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutReceiptsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutReceiptsInput, Prisma.UserUncheckedCreateWithoutReceiptsInput>
-}
-
-export type UserUpsertWithoutReceiptsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutReceiptsInput, Prisma.UserUncheckedUpdateWithoutReceiptsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutReceiptsInput, Prisma.UserUncheckedCreateWithoutReceiptsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutReceiptsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutReceiptsInput, Prisma.UserUncheckedUpdateWithoutReceiptsInput>
-}
-
-export type UserUpdateWithoutReceiptsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  businessInfo?: Prisma.BusinessInfoUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutReceiptsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  businessInfo?: Prisma.BusinessInfoUncheckedUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUncheckedUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUncheckedUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUncheckedUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutBusinessInfoInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-  email?: Prisma.EmailCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutBusinessInfoInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-  email?: Prisma.EmailUncheckedCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageUncheckedCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageUncheckedCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutBusinessInfoInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutBusinessInfoInput, Prisma.UserUncheckedCreateWithoutBusinessInfoInput>
-}
-
-export type UserUpsertWithoutBusinessInfoInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutBusinessInfoInput, Prisma.UserUncheckedUpdateWithoutBusinessInfoInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutBusinessInfoInput, Prisma.UserUncheckedCreateWithoutBusinessInfoInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutBusinessInfoInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutBusinessInfoInput, Prisma.UserUncheckedUpdateWithoutBusinessInfoInput>
-}
-
-export type UserUpdateWithoutBusinessInfoInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-  email?: Prisma.EmailUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutBusinessInfoInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-  email?: Prisma.EmailUncheckedUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUncheckedUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUncheckedUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutPaymentMethodsInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutPaymentMethodsInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoUncheckedCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailUncheckedCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageUncheckedCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageUncheckedCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutPaymentMethodsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentMethodsInput, Prisma.UserUncheckedCreateWithoutPaymentMethodsInput>
-}
-
-export type UserUpsertWithoutPaymentMethodsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutPaymentMethodsInput, Prisma.UserUncheckedUpdateWithoutPaymentMethodsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentMethodsInput, Prisma.UserUncheckedCreateWithoutPaymentMethodsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutPaymentMethodsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutPaymentMethodsInput, Prisma.UserUncheckedUpdateWithoutPaymentMethodsInput>
-}
-
-export type UserUpdateWithoutPaymentMethodsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutPaymentMethodsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUncheckedUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUncheckedUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUncheckedUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUncheckedUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutInvoiceLayoutInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutInvoiceLayoutInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoUncheckedCreateNestedOneWithoutUserInput
-  email?: Prisma.EmailUncheckedCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageUncheckedCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageUncheckedCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutInvoiceLayoutInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutInvoiceLayoutInput, Prisma.UserUncheckedCreateWithoutInvoiceLayoutInput>
-}
-
-export type UserUpsertWithoutInvoiceLayoutInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutInvoiceLayoutInput, Prisma.UserUncheckedUpdateWithoutInvoiceLayoutInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutInvoiceLayoutInput, Prisma.UserUncheckedCreateWithoutInvoiceLayoutInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutInvoiceLayoutInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutInvoiceLayoutInput, Prisma.UserUncheckedUpdateWithoutInvoiceLayoutInput>
-}
-
-export type UserUpdateWithoutInvoiceLayoutInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutInvoiceLayoutInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUncheckedUpdateOneWithoutUserNestedInput
-  email?: Prisma.EmailUncheckedUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUncheckedUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUncheckedUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutEmailInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutEmailInput = {
-  id?: string
-  password: string
-  role?: $Enums.UserRole
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-  businessInfo?: Prisma.BusinessInfoUncheckedCreateNestedOneWithoutUserInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedCreateNestedOneWithoutUserInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedCreateNestedOneWithoutUserInput
-  languages?: Prisma.LanguageUncheckedCreateNestedManyWithoutUserInput
-  mileages?: Prisma.MileageUncheckedCreateNestedManyWithoutUserInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutUserInput
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedCreateNestedOneWithoutUserInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutEmailInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutEmailInput, Prisma.UserUncheckedCreateWithoutEmailInput>
-}
-
-export type UserUpsertWithoutEmailInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutEmailInput, Prisma.UserUncheckedUpdateWithoutEmailInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutEmailInput, Prisma.UserUncheckedCreateWithoutEmailInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutEmailInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutEmailInput, Prisma.UserUncheckedUpdateWithoutEmailInput>
-}
-
-export type UserUpdateWithoutEmailInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutEmailInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-  businessInfo?: Prisma.BusinessInfoUncheckedUpdateOneWithoutUserNestedInput
-  imapConfigurations?: Prisma.imapConfigurationUncheckedUpdateOneWithoutUserNestedInput
-  invoiceLayout?: Prisma.InvoiceLayoutUncheckedUpdateOneWithoutUserNestedInput
-  languages?: Prisma.LanguageUncheckedUpdateManyWithoutUserNestedInput
-  mileages?: Prisma.MileageUncheckedUpdateManyWithoutUserNestedInput
-  paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlan?: Prisma.userSubscriptionPlanUncheckedUpdateOneWithoutUserNestedInput
-  userSubscriptionPlanHistory?: Prisma.userSubscriptionPlanHistoryUncheckedUpdateManyWithoutUserNestedInput
-}
-
-
-/**
- * Count Type UserCountOutputType
- */
-
-export type UserCountOutputType = {
-  receipts: number
-  languages: number
-  mileages: number
-  paymentMethods: number
-  userSubscriptionPlanHistory: number
-}
-
-export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  receipts?: boolean | UserCountOutputTypeCountReceiptsArgs
-  languages?: boolean | UserCountOutputTypeCountLanguagesArgs
-  mileages?: boolean | UserCountOutputTypeCountMileagesArgs
-  paymentMethods?: boolean | UserCountOutputTypeCountPaymentMethodsArgs
-  userSubscriptionPlanHistory?: boolean | UserCountOutputTypeCountUserSubscriptionPlanHistoryArgs
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UserCountOutputType
-   */
-  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountReceiptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ReceiptWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountLanguagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LanguageWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountMileagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MileageWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountPaymentMethodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentMethodWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountUserSubscriptionPlanHistoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.userSubscriptionPlanHistoryWhereInput
-}
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  email?: boolean
   password?: boolean
-  role?: boolean
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: boolean
-  updated_at?: boolean
-  receipts?: boolean | Prisma.User$receiptsArgs<ExtArgs>
-  businessInfo?: boolean | Prisma.User$businessInfoArgs<ExtArgs>
-  email?: boolean | Prisma.User$emailArgs<ExtArgs>
-  imapConfigurations?: boolean | Prisma.User$imapConfigurationsArgs<ExtArgs>
-  invoiceLayout?: boolean | Prisma.User$invoiceLayoutArgs<ExtArgs>
-  languages?: boolean | Prisma.User$languagesArgs<ExtArgs>
-  mileages?: boolean | Prisma.User$mileagesArgs<ExtArgs>
-  paymentMethods?: boolean | Prisma.User$paymentMethodsArgs<ExtArgs>
-  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
-  userSubscriptionPlan?: boolean | Prisma.User$userSubscriptionPlanArgs<ExtArgs>
-  userSubscriptionPlanHistory?: boolean | Prisma.User$userSubscriptionPlanHistoryArgs<ExtArgs>
-  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
+  provider?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  email?: boolean
   password?: boolean
-  role?: boolean
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: boolean
-  updated_at?: boolean
+  provider?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  email?: boolean
   password?: boolean
-  role?: boolean
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: boolean
-  updated_at?: boolean
+  provider?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
   id?: boolean
+  email?: boolean
   password?: boolean
-  role?: boolean
-  twoFactorEnabled?: boolean
-  status?: boolean
-  created_at?: boolean
-  updated_at?: boolean
+  provider?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "password" | "role" | "twoFactorEnabled" | "status" | "created_at" | "updated_at", ExtArgs["result"]["user"]>
-export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  receipts?: boolean | Prisma.User$receiptsArgs<ExtArgs>
-  businessInfo?: boolean | Prisma.User$businessInfoArgs<ExtArgs>
-  email?: boolean | Prisma.User$emailArgs<ExtArgs>
-  imapConfigurations?: boolean | Prisma.User$imapConfigurationsArgs<ExtArgs>
-  invoiceLayout?: boolean | Prisma.User$invoiceLayoutArgs<ExtArgs>
-  languages?: boolean | Prisma.User$languagesArgs<ExtArgs>
-  mileages?: boolean | Prisma.User$mileagesArgs<ExtArgs>
-  paymentMethods?: boolean | Prisma.User$paymentMethodsArgs<ExtArgs>
-  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
-  userSubscriptionPlan?: boolean | Prisma.User$userSubscriptionPlanArgs<ExtArgs>
-  userSubscriptionPlanHistory?: boolean | Prisma.User$userSubscriptionPlanHistoryArgs<ExtArgs>
-  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
-}
-export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "provider" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
-  objects: {
-    receipts: Prisma.$ReceiptPayload<ExtArgs>[]
-    businessInfo: Prisma.$BusinessInfoPayload<ExtArgs> | null
-    email: Prisma.$EmailPayload<ExtArgs> | null
-    imapConfigurations: Prisma.$imapConfigurationPayload<ExtArgs> | null
-    invoiceLayout: Prisma.$InvoiceLayoutPayload<ExtArgs> | null
-    languages: Prisma.$LanguagePayload<ExtArgs>[]
-    mileages: Prisma.$MileagePayload<ExtArgs>[]
-    paymentMethods: Prisma.$PaymentMethodPayload<ExtArgs>[]
-    profile: Prisma.$ProfilePayload<ExtArgs> | null
-    userSubscriptionPlan: Prisma.$userSubscriptionPlanPayload<ExtArgs> | null
-    userSubscriptionPlanHistory: Prisma.$userSubscriptionPlanHistoryPayload<ExtArgs>[]
-  }
+  objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    password: string
-    role: $Enums.UserRole
-    twoFactorEnabled: boolean
-    status: boolean
-    created_at: Date
-    updated_at: Date
+    email: string
+    password: string | null
+    provider: $Enums.AuthProvider
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -2206,17 +787,6 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  receipts<T extends Prisma.User$receiptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receiptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReceiptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  businessInfo<T extends Prisma.User$businessInfoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$businessInfoArgs<ExtArgs>>): Prisma.Prisma__BusinessInfoClient<runtime.Types.Result.GetResult<Prisma.$BusinessInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  email<T extends Prisma.User$emailArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$emailArgs<ExtArgs>>): Prisma.Prisma__EmailClient<runtime.Types.Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  imapConfigurations<T extends Prisma.User$imapConfigurationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$imapConfigurationsArgs<ExtArgs>>): Prisma.Prisma__imapConfigurationClient<runtime.Types.Result.GetResult<Prisma.$imapConfigurationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  invoiceLayout<T extends Prisma.User$invoiceLayoutArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$invoiceLayoutArgs<ExtArgs>>): Prisma.Prisma__InvoiceLayoutClient<runtime.Types.Result.GetResult<Prisma.$InvoiceLayoutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  languages<T extends Prisma.User$languagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$languagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  mileages<T extends Prisma.User$mileagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mileagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MileagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  paymentMethods<T extends Prisma.User$paymentMethodsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentMethodsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentMethodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  userSubscriptionPlan<T extends Prisma.User$userSubscriptionPlanArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$userSubscriptionPlanArgs<ExtArgs>>): Prisma.Prisma__userSubscriptionPlanClient<runtime.Types.Result.GetResult<Prisma.$userSubscriptionPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  userSubscriptionPlanHistory<T extends Prisma.User$userSubscriptionPlanHistoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$userSubscriptionPlanHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$userSubscriptionPlanHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2247,12 +817,11 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
+  readonly email: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
-  readonly role: Prisma.FieldRef<"User", 'UserRole'>
-  readonly twoFactorEnabled: Prisma.FieldRef<"User", 'Boolean'>
-  readonly status: Prisma.FieldRef<"User", 'Boolean'>
-  readonly created_at: Prisma.FieldRef<"User", 'DateTime'>
-  readonly updated_at: Prisma.FieldRef<"User", 'DateTime'>
+  readonly provider: Prisma.FieldRef<"User", 'AuthProvider'>
+  readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
     
 
@@ -2269,10 +838,6 @@ export type UserFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which User to fetch.
    */
@@ -2292,10 +857,6 @@ export type UserFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -2313,10 +874,6 @@ export type UserFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which User to fetch.
    */
@@ -2366,10 +923,6 @@ export type UserFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  /**
    * Filter, which User to fetch.
    */
   where?: Prisma.UserWhereInput
@@ -2418,10 +971,6 @@ export type UserFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  /**
    * Filter, which Users to fetch.
    */
   where?: Prisma.UserWhereInput
@@ -2464,10 +1013,6 @@ export type UserCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * The data needed to create a User.
    */
@@ -2516,10 +1061,6 @@ export type UserUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * The data needed to update a User.
    */
@@ -2587,10 +1128,6 @@ export type UserUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  /**
    * The filter to search for the User to update in case it exists.
    */
   where: Prisma.UserWhereUniqueInput
@@ -2617,10 +1154,6 @@ export type UserDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  /**
    * Filter which User to delete.
    */
   where: Prisma.UserWhereUniqueInput
@@ -2641,240 +1174,6 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.receipts
- */
-export type User$receiptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Receipt
-   */
-  select?: Prisma.ReceiptSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Receipt
-   */
-  omit?: Prisma.ReceiptOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ReceiptInclude<ExtArgs> | null
-  where?: Prisma.ReceiptWhereInput
-  orderBy?: Prisma.ReceiptOrderByWithRelationInput | Prisma.ReceiptOrderByWithRelationInput[]
-  cursor?: Prisma.ReceiptWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ReceiptScalarFieldEnum | Prisma.ReceiptScalarFieldEnum[]
-}
-
-/**
- * User.businessInfo
- */
-export type User$businessInfoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the BusinessInfo
-   */
-  select?: Prisma.BusinessInfoSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the BusinessInfo
-   */
-  omit?: Prisma.BusinessInfoOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BusinessInfoInclude<ExtArgs> | null
-  where?: Prisma.BusinessInfoWhereInput
-}
-
-/**
- * User.email
- */
-export type User$emailArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Email
-   */
-  select?: Prisma.EmailSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Email
-   */
-  omit?: Prisma.EmailOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.EmailInclude<ExtArgs> | null
-  where?: Prisma.EmailWhereInput
-}
-
-/**
- * User.imapConfigurations
- */
-export type User$imapConfigurationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the imapConfiguration
-   */
-  select?: Prisma.imapConfigurationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the imapConfiguration
-   */
-  omit?: Prisma.imapConfigurationOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.imapConfigurationInclude<ExtArgs> | null
-  where?: Prisma.imapConfigurationWhereInput
-}
-
-/**
- * User.invoiceLayout
- */
-export type User$invoiceLayoutArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the InvoiceLayout
-   */
-  select?: Prisma.InvoiceLayoutSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the InvoiceLayout
-   */
-  omit?: Prisma.InvoiceLayoutOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.InvoiceLayoutInclude<ExtArgs> | null
-  where?: Prisma.InvoiceLayoutWhereInput
-}
-
-/**
- * User.languages
- */
-export type User$languagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Language
-   */
-  select?: Prisma.LanguageSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Language
-   */
-  omit?: Prisma.LanguageOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LanguageInclude<ExtArgs> | null
-  where?: Prisma.LanguageWhereInput
-  orderBy?: Prisma.LanguageOrderByWithRelationInput | Prisma.LanguageOrderByWithRelationInput[]
-  cursor?: Prisma.LanguageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.LanguageScalarFieldEnum | Prisma.LanguageScalarFieldEnum[]
-}
-
-/**
- * User.mileages
- */
-export type User$mileagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Mileage
-   */
-  select?: Prisma.MileageSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Mileage
-   */
-  omit?: Prisma.MileageOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MileageInclude<ExtArgs> | null
-  where?: Prisma.MileageWhereInput
-  orderBy?: Prisma.MileageOrderByWithRelationInput | Prisma.MileageOrderByWithRelationInput[]
-  cursor?: Prisma.MileageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MileageScalarFieldEnum | Prisma.MileageScalarFieldEnum[]
-}
-
-/**
- * User.paymentMethods
- */
-export type User$paymentMethodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PaymentMethod
-   */
-  select?: Prisma.PaymentMethodSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PaymentMethod
-   */
-  omit?: Prisma.PaymentMethodOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentMethodInclude<ExtArgs> | null
-  where?: Prisma.PaymentMethodWhereInput
-  orderBy?: Prisma.PaymentMethodOrderByWithRelationInput | Prisma.PaymentMethodOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentMethodWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentMethodScalarFieldEnum | Prisma.PaymentMethodScalarFieldEnum[]
-}
-
-/**
- * User.profile
- */
-export type User$profileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Profile
-   */
-  select?: Prisma.ProfileSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Profile
-   */
-  omit?: Prisma.ProfileOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProfileInclude<ExtArgs> | null
-  where?: Prisma.ProfileWhereInput
-}
-
-/**
- * User.userSubscriptionPlan
- */
-export type User$userSubscriptionPlanArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the userSubscriptionPlan
-   */
-  select?: Prisma.userSubscriptionPlanSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the userSubscriptionPlan
-   */
-  omit?: Prisma.userSubscriptionPlanOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.userSubscriptionPlanInclude<ExtArgs> | null
-  where?: Prisma.userSubscriptionPlanWhereInput
-}
-
-/**
- * User.userSubscriptionPlanHistory
- */
-export type User$userSubscriptionPlanHistoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the userSubscriptionPlanHistory
-   */
-  select?: Prisma.userSubscriptionPlanHistorySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the userSubscriptionPlanHistory
-   */
-  omit?: Prisma.userSubscriptionPlanHistoryOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.userSubscriptionPlanHistoryInclude<ExtArgs> | null
-  where?: Prisma.userSubscriptionPlanHistoryWhereInput
-  orderBy?: Prisma.userSubscriptionPlanHistoryOrderByWithRelationInput | Prisma.userSubscriptionPlanHistoryOrderByWithRelationInput[]
-  cursor?: Prisma.userSubscriptionPlanHistoryWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserSubscriptionPlanHistoryScalarFieldEnum | Prisma.UserSubscriptionPlanHistoryScalarFieldEnum[]
-}
-
-/**
  * User without action
  */
 export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2886,8 +1185,4 @@ export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
 }

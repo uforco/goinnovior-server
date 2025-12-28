@@ -5,7 +5,7 @@ import { DatabaseModule } from './config/database/database.module';
 import { AuthModule } from './auth/auth.module';
 
 import { ConfigModule } from '@nestjs/config';
-import { AuthGuard } from './auth/guards/auth/auth.guard';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 
 
