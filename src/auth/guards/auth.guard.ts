@@ -2,7 +2,6 @@ import {
   Injectable,
   CanActivate,
   ExecutionContext,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
@@ -28,16 +27,22 @@ export class AuthGuard implements CanActivate {
 
     if (isPublic) return true;
 
-    const authHeader = request.headers.authorization;
+    console.log('auth Guards', request.cookies?.access_token);
 
-    if (!authHeader || !authHeader.startsWith('Bearer '))
-      throw new UnauthorizedException('No token provided');
+    const token: string | undefined | null =
+      request.cookies?.access_token || this.extractTokenFromHeader(request);
 
-    const token: string = authHeader.split(' ')[1];
+    if (!token) return false;
+
+    console.log('decoded-token--------', token);
 
     try {
-      const decoded = await this.jwtService.verifyAsync<jwtPayload>(token);
+      const decoded = await this.jwtService.verifyAsync<jwtPayload>(token?.split(' ')[1], {
+        secret: process.env.JWT_SECRET,
+      });
       // jwtPayload;
+
+      console.log('decoded', decoded);
 
       const user = await this.prisma.user.findUnique({
         where: { id: decoded.sub },
@@ -50,5 +55,11 @@ export class AuthGuard implements CanActivate {
       return false;
     }
     return true;
+  }
+
+  private extractTokenFromHeader(request: any): any {
+    const token = request.headers.authorization;
+    const type = token?.split(' ')[0];
+    return type === 'Bearer' ? token : undefined;
   }
 }

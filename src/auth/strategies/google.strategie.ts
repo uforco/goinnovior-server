@@ -20,7 +20,12 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     profile: any,
     done: VerifyCallback,
   ) {
-    const payload = { profile };
+    const payload = {
+      id: profile.id,
+      email: profile.emails[0].value,
+      provider: 'GOOGLE',
+      image: profile.photos[0].value,
+    };
     done(null, payload);
   }
 }
