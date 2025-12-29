@@ -1,40 +1,41 @@
-# Use Node 20 Alpine
-FROM node:22-alpine
+# Stage 1: Build
+FROM node:20 AS builder
 
-# Set working directory
-# WORKDIR /usr/src/app
 WORKDIR /app
-
-# Install pnpm
-RUN npm install -g pnpm
 
 # Copy package files
 COPY package*.json ./
 
-# Copy Prisma folder first
-COPY prisma ./prisma/
+# Install deps
+RUN npm i -g pnpm@latest && pnpm i
+
+# Copy prisma folder
+COPY prisma ./prisma
 COPY prisma.config.ts ./
 
-# Install dependencies
-RUN pnpm install
-
-
-# Copy rest of the source code
+# Copy source code
 COPY . .
 
 # Generate Prisma client
 # RUN pnpm prisma:generate
 
-# Build the application
+# Build the app
 RUN pnpm build
 
-# ✅ Fix permissions for dist and node_modules
-# RUN mkdir -p /usr/src/app/dist && chmod -R 777 /usr/src/app
+# Stage 2: Run
+FROM node:20-alpine
 
-# Expose port
+WORKDIR /app
+
+# Copy build output & dependencies
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
+
+# Set production env
+ENV NODE_ENV=production
 EXPOSE 3000
 
-# Default command
-CMD ["pnpm", "run", "start:prod"]
-
-
+CMD ["npm", "run", "start:prod"]
