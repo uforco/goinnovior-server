@@ -65,7 +65,7 @@ POST /add-to-cart/decrement
 ---
 
 ## 📄 API Documentation (Swagger)
-- http://server.drinkwithme.click/doc
+- https://goinnovior-server.onrender.com/doc
 
 ## 🧩 Prisma & Database
 
