@@ -36,7 +36,7 @@ export class AddtocardService {
       },
     });
 
-    console.log('existingItem', existingItem);
+    // console.log('existingItem', existingItem);
 
     const select = {
       id: true,
@@ -84,7 +84,10 @@ export class AddtocardService {
   }
 
   async getAllQunt(userId: string) {
-    return await this.prisma.addtoCart.aggregate({
+
+    // console.log('userId', userId)
+
+    const data = await this.prisma.addtoCart.aggregate({
       where: {
         userId,
       },
@@ -92,5 +95,7 @@ export class AddtocardService {
         quantity: true,
       },
     });
+    // console.log('quantity data', data);
+    return { quantity: data._sum.quantity ?? 0 }
   }
 }

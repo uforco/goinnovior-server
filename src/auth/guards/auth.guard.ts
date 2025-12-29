@@ -27,14 +27,14 @@ export class AuthGuard implements CanActivate {
 
     if (isPublic) return true;
 
-    console.log('auth Guards', request.cookies);
+    // console.log('auth Guards', request.cookies);
 
     const token: string | undefined | null =
       request.cookies?.access_token || this.extractTokenFromHeader(request);
 
     if (!token) return false;
 
-    console.log('decoded-token--------', token);
+    // console.log('decoded-token--------', token);
 
     try {
       const decoded = await this.jwtService.verifyAsync<jwtPayload>(token?.split(' ')[1], {
@@ -42,7 +42,7 @@ export class AuthGuard implements CanActivate {
       });
       // jwtPayload;
 
-      console.log('decoded', decoded);
+      // console.log('decoded', decoded);
 
       const user = await this.prisma.user.findUnique({
         where: { id: decoded.sub },

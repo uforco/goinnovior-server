@@ -29,8 +29,8 @@ export class AddtocardController {
     });
   }
 
-  @Get()
+  @Get('qty')
   async findAll(@User() user: any) {
-    await this.addtocardService.getAllQunt(user.sub as string);
+    return await this.addtocardService.getAllQunt(user.sub as string);
   }
 }

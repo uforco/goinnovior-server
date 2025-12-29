@@ -21,7 +21,7 @@ export class AuthController {
   @UseGuards(GoogleGuard)
   @Get('google/callback')
   async googleCallback(@User() user: any, @Res() res: Response) {
-    console.log(user);
+    // console.log(user);
     const result = await this.authService.socialmediaLogin({
       id: user.id,
       email: user.email,
@@ -32,7 +32,7 @@ export class AuthController {
     res.cookie('access_token', result.token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'none',
+      sameSite: 'lax',
       // maxAge: 1 * 60 * 60 * 1000, // 1 hour
       maxAge: 1 * 60 * 60 * 1000, // 1 hour
     });
@@ -49,7 +49,7 @@ export class AuthController {
   @UseGuards(GithubGuard)
   @Get('github/callback')
   async githubCallback(@User() user: any, @Res() res: Response) {
-    console.log(user);
+    // console.log(user);
 
     const result = await this.authService.socialmediaLogin({
       id: user.id,
@@ -111,8 +111,8 @@ export class AuthController {
   // @Public()
   @Get('me')
   async getCookie(@Req() req: any, @User() user: any) {
-    console.log('-------user-----', user);
-    console.log(req.cookies);
+    // console.log('-------user-----', user);
+    // console.log(req.cookies);
     if (!req.cookies && !req.cookies.access_token) return 'No cookie found';
     return await this.authService.getUser(user.sub as string);
   }
