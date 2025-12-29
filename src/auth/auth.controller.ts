@@ -4,11 +4,14 @@ import { GoogleGuard } from './guards/googleAuth0.guard';
 import { User } from './decorators/user.decorator';
 import { AuthService } from './auth.service';
 import { Response } from 'express';
+import { GithubGuard } from './guards/githubAuth0.guard';
+
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  // google auth login
   @Public()
   @UseGuards(GoogleGuard)
   @Get('google/login')
@@ -18,6 +21,7 @@ export class AuthController {
   @UseGuards(GoogleGuard)
   @Get('google/callback')
   async googleCallback(@User() user: any, @Res() res: Response) {
+    console.log(user);
     const result = await this.authService.googleLogin({
       id: user.id,
       email: user.email,
@@ -33,6 +37,35 @@ export class AuthController {
       maxAge: 1 * 60 * 60 * 1000, // 1 hour
     });
     res.redirect(`${process.env.FORTEND_URL}?access_token=${result.token}`);
+  }
+
+  // github auth login
+  @Public()
+  @Get('github/login')
+  @UseGuards(GithubGuard)
+  githubLogin() {}
+
+  @Public()
+  @UseGuards(GithubGuard)
+  @Get('github/callback')
+  githubCallback(@User() user: any) {
+    console.log(user);
+
+    // const result = await this.authService.googleLogin({
+    //   id: user.id,
+    //   email: user.email,
+    //   provider: user.provider,
+    //   image: user.image,
+    // });
+
+    // res.cookie('access_token', result.token, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === 'production',
+    //   sameSite: 'lax',
+    //   // maxAge: 1 * 60 * 60 * 1000, // 1 hour
+    //   maxAge: 1 * 60 * 60 * 1000, // 1 hour
+    // });
+    // res.redirect(`${process.env.FORTEND_URL}?access_token=${result.token}`);
   }
 
   @Get('logout')

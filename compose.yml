@@ -41,7 +41,7 @@ services:
       GOOGLE_CLIENT_SECRET: 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
       # URL
       FORTEND_URL: http://localhost:3001
-      BACKEND_URL: http://localhost:3000
+      BACKEND_URL: https://server.drinkwithme.click
     depends_on:
       - db
     
