@@ -36,7 +36,7 @@ export class AuthController {
       // maxAge: 1 * 60 * 60 * 1000, // 1 hour
       maxAge: 1 * 60 * 60 * 1000, // 1 hour
     });
-    res.redirect(`${process.env.FORTEND_URL}?access_token=${result.token}`);
+    res.redirect(`${process.env.FORTEND_URL}`);
   }
 
   // github auth login
@@ -65,7 +65,7 @@ export class AuthController {
       // maxAge: 1 * 60 * 60 * 1000, // 1 hour
       maxAge: 1 * 60 * 60 * 1000, // 1 hour
     });
-    res.redirect(`${process.env.FORTEND_URL}?access_token=${result.token}`);
+    res.redirect(`${process.env.FORTEND_URL}`);
   }
 
   // facebook auth login
@@ -92,7 +92,7 @@ export class AuthController {
       // maxAge: 1 * 60 * 60 * 1000, // 1 hour
       maxAge: 1 * 60 * 60 * 1000, // 1 hour
     });
-    res.redirect(`${process.env.FORTEND_URL}?access_token=${result.token}`);
+    res.redirect(`${process.env.FORTEND_URL}`);
   }
 
   @Get('logout')
