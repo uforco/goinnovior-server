@@ -5,12 +5,14 @@ import * as cookieParser from 'cookie-parser';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
+  app.use(cookieParser());
   app.enableCors({
     origin: [
       'http://localhost:3000',
       'http://localhost:3001',
       `${process.env.FORTEND_URL}`,
     ],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
   SwaggerSetting(app);
@@ -22,8 +24,6 @@ async function bootstrap(): Promise<void> {
   //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   //   credentials: true,
   // });
-
-  app.use(cookieParser());
 
   await app.listen(process.env.PORT ?? 3000);
 }
