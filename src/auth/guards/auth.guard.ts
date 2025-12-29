@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
 
     if (isPublic) return true;
 
-    console.log('auth Guards', request.cookies?.access_token);
+    console.log('auth Guards', request.cookies);
 
     const token: string | undefined | null =
       request.cookies?.access_token || this.extractTokenFromHeader(request);
