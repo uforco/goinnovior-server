@@ -1,6 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/config/database/prisma.service';
-import { GoogleValidateUser, ValidateUser } from './types/jwt-payload';
+import { SocialMediaValidateUser, ValidateUser } from './types/jwt-payload';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
@@ -47,7 +47,7 @@ export class AuthService {
     });
   }
 
-  async googleLogin(user: GoogleValidateUser) {
+  async socialmediaLogin(user: SocialMediaValidateUser) {
     if (!user.email || !user.provider) {
       throw new HttpException('No user from google', 400);
     }

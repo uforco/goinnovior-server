@@ -4,13 +4,12 @@ import { Strategy, VerifyCallback } from 'passport-google-oauth20';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
-export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
+export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
   constructor(private readonly configService: ConfigService) {
     super({
-      clientID: configService.get('GITHUB_ID') as string,
-      clientSecret: configService.get('GITHUB_SECRET') as string,
+      clientID: configService.get('FACEBOOK_CLIENT_ID') as string,
+      clientSecret: configService.get('FACEBOOK_CLIENT_SECRET') as string,
       callbackURL: `${configService.get('BACKEND_URL')}/auth/google/callback`,
-      scope: ['user:email'],
     });
   }
 

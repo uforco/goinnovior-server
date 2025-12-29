@@ -5,7 +5,7 @@ import { User } from './decorators/user.decorator';
 import { AuthService } from './auth.service';
 import { Response } from 'express';
 import { GithubGuard } from './guards/githubAuth0.guard';
-
+import { FacebookGuard } from './guards/facebookAuth0.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -22,7 +22,7 @@ export class AuthController {
   @Get('google/callback')
   async googleCallback(@User() user: any, @Res() res: Response) {
     console.log(user);
-    const result = await this.authService.googleLogin({
+    const result = await this.authService.socialmediaLogin({
       id: user.id,
       email: user.email,
       provider: user.provider,
@@ -48,24 +48,51 @@ export class AuthController {
   @Public()
   @UseGuards(GithubGuard)
   @Get('github/callback')
-  githubCallback(@User() user: any) {
+  async githubCallback(@User() user: any, @Res() res: Response) {
     console.log(user);
 
-    // const result = await this.authService.googleLogin({
-    //   id: user.id,
-    //   email: user.email,
-    //   provider: user.provider,
-    //   image: user.image,
-    // });
+    const result = await this.authService.socialmediaLogin({
+      id: user.id,
+      email: user.email,
+      provider: user.provider,
+      image: user.image,
+    });
 
-    // res.cookie('access_token', result.token, {
-    //   httpOnly: true,
-    //   secure: process.env.NODE_ENV === 'production',
-    //   sameSite: 'lax',
-    //   // maxAge: 1 * 60 * 60 * 1000, // 1 hour
-    //   maxAge: 1 * 60 * 60 * 1000, // 1 hour
-    // });
-    // res.redirect(`${process.env.FORTEND_URL}?access_token=${result.token}`);
+    res.cookie('access_token', result.token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      // maxAge: 1 * 60 * 60 * 1000, // 1 hour
+      maxAge: 1 * 60 * 60 * 1000, // 1 hour
+    });
+    res.redirect(`${process.env.FORTEND_URL}?access_token=${result.token}`);
+  }
+
+  // facebook auth login
+  @Public()
+  @Get('facebook/login')
+  @UseGuards(FacebookGuard)
+  facebookLogin() {}
+
+  @Public()
+  @UseGuards(GithubGuard)
+  @Get('facebook/callback')
+  async facebookCallback(@User() user: any, @Res() res: Response) {
+    const result = await this.authService.socialmediaLogin({
+      id: user.id,
+      email: user.email,
+      provider: user.provider,
+      image: user.image,
+    });
+
+    res.cookie('access_token', result.token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      // maxAge: 1 * 60 * 60 * 1000, // 1 hour
+      maxAge: 1 * 60 * 60 * 1000, // 1 hour
+    });
+    res.redirect(`${process.env.FORTEND_URL}?access_token=${result.token}`);
   }
 
   @Get('logout')

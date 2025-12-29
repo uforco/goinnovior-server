@@ -11,7 +11,7 @@ export interface ValidateUser {
   image?: string;
 }
 
-export interface GoogleValidateUser {
+export interface SocialMediaValidateUser {
   id: string;
   email: string;
   provider: string;
