@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from './config/database/prisma.service';
+import { Cron, CronExpression } from '@nestjs/schedule';
 
 @Injectable()
 export class AppService {
@@ -14,7 +15,13 @@ export class AppService {
     return users;
   }
 
-  async createUser() {
-    return '';
+  @Cron(CronExpression.EVERY_5_SECONDS)
+  async handleCron() {
+    const data = await fetch('https://technext-server.onrender.com')
+    if(data.ok && data.status === 200) {
+      console.log('Server is running - technext-server');
+    } else {
+      console.log('Server is not running - technext-server');
+    }
   }
 }

@@ -7,7 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { AddtocardModule } from './addtocard/addtocard.module';
-
+import { ScheduleModule } from '@nestjs/schedule';
 
 
 @Module({
@@ -16,7 +16,7 @@ import { AddtocardModule } from './addtocard/addtocard.module';
     DatabaseModule,
     AuthModule,
     AddtocardModule,
-    // PaymentsModule
+    ScheduleModule.forRoot()
   ],
   controllers: [AppController],
   providers: [
